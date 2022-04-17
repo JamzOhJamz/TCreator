@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Resources/m6x11.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Resources/monogram-extended.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Common/DropdownItem.cs" type="Script" id=3]
+
+[sub_resource type="StyleBoxFlat" id=26]
+content_margin_left = 5.0
+content_margin_top = 1.0
+bg_color = Color( 0.113725, 0.113725, 0.145098, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.92549, 0.231373, 0.352941, 1 )
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="DynamicFont" id=27]
+font_data = ExtResource( 1 )
+fallback/0 = ExtResource( 2 )
+
+[node name="DropdownItem" type="Panel"]
+margin_right = 143.0
+margin_bottom = 21.0
+mouse_default_cursor_shape = 2
+custom_styles/panel = SubResource( 26 )
+script = ExtResource( 3 )
+
+[node name="SelectFromListText" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 3.0
+margin_right = -1.0
+margin_bottom = -1.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 27 )
+text = "Dropdown item"
+valign = 1

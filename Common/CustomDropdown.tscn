@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Resources/m6x11.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Resources/monogram-extended.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://dropdowncaret.png" type="Texture" id=3]
+[ext_resource path="res://Common/CustomDropdown.cs" type="Script" id=4]
+[ext_resource path="res://Common/DropdownItem.tscn" type="PackedScene" id=5]
+
+[sub_resource type="StyleBoxFlat" id=25]
+content_margin_left = 5.0
+content_margin_top = 1.0
+bg_color = Color( 0.137255, 0.137255, 0.172549, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="DynamicFont" id=11]
+font_data = ExtResource( 1 )
+fallback/0 = ExtResource( 2 )
+
+[node name="CustomDropdown" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 4 )
+
+[node name="OptionInput" type="Panel" parent="."]
+margin_right = 143.0
+margin_bottom = 21.0
+focus_mode = 1
+mouse_default_cursor_shape = 2
+custom_styles/panel = SubResource( 25 )
+
+[node name="SelectFromListText" type="Label" parent="OptionInput"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 2.0
+margin_right = 5.0
+margin_bottom = 2.0
+custom_colors/font_color = Color( 0.266667, 0.270588, 0.345098, 1 )
+custom_fonts/font = SubResource( 11 )
+text = "Select..."
+valign = 1
+
+[node name="DropdownBtn" type="TextureButton" parent="OptionInput"]
+modulate = Color( 0.266667, 0.270588, 0.345098, 1 )
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -14.0
+margin_top = -6.5
+margin_right = -4.0
+margin_bottom = 6.5
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="DropdownItem" parent="." instance=ExtResource( 5 )]
+visible = false
+margin_top = 21.0
+margin_bottom = 42.0
+
+[connection signal="gui_input" from="OptionInput" to="." method="_on_OptionInput_gui_input"]
