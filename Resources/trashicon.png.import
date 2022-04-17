@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/trashicon.png-89c105467dc8e07085fa19486883fdb6.stex"
+path="res://.import/trashicon.png-fe59e585d204443ee29ad32e0ef81689.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://trashicon.png"
-dest_files=[ "res://.import/trashicon.png-89c105467dc8e07085fa19486883fdb6.stex" ]
+source_file="res://Resources/trashicon.png"
+dest_files=[ "res://.import/trashicon.png-fe59e585d204443ee29ad32e0ef81689.stex" ]
 
 [params]
 

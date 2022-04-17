@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/dropdowncaret.png-cb16d764b0d3fb21537d053c15441298.stex"
+path="res://.import/texturetypeicon.png-8c47d2c38fa6068b9d65a34a503ef598.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://dropdowncaret.png"
-dest_files=[ "res://.import/dropdowncaret.png-cb16d764b0d3fb21537d053c15441298.stex" ]
+source_file="res://Resources/texturetypeicon.png"
+dest_files=[ "res://.import/texturetypeicon.png-8c47d2c38fa6068b9d65a34a503ef598.stex" ]
 
 [params]
 

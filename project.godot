@@ -97,7 +97,7 @@ _global_script_classes=[ {
 "base": "Camera2D",
 "class": "PanningCamera2D",
 "language": "GDScript",
-"path": "res://PanningCamera2D.gd"
+"path": "res://Scripts/PanningCamera2D.gd"
 } ]
 _global_script_class_icons={
 "ChatMessage": "",
@@ -123,15 +123,15 @@ _global_script_class_icons={
 [application]
 
 config/name="TCreator"
-run/main_scene="res://base.tscn"
+run/main_scene="res://Scenes/base.tscn"
 boot_splash/image="res://bootsplash.png"
 config/icon="res://icon.png"
 
 [autoload]
 
 Discord="*res://addons/discord_game_sdk/discord.gd"
-RichPresenceHandler="*res://rich_presence_handler.gd"
-NativeHelper="*res://NativeHelper.cs"
+RichPresenceHandler="*res://Scripts/rich_presence_handler.gd"
+NativeHelper="*res://Scripts/NativeHelper.cs"
 
 [editor_plugins]
 
@@ -144,4 +144,3 @@ common/enable_pause_aware_picking=true
 [rendering]
 
 environment/default_clear_color=Color( 0.0784314, 0.0784314, 0.0980392, 1 )
-environment/default_environment="res://default_env.tres"

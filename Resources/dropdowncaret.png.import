@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/warningicon.png-3ea408235e2c4418c1ebd2e8858fc503.stex"
+path="res://.import/dropdowncaret.png-fadb5a11d78fd3ce72950f328bd0d8ff.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://warningicon.png"
-dest_files=[ "res://.import/warningicon.png-3ea408235e2c4418c1ebd2e8858fc503.stex" ]
+source_file="res://Resources/dropdowncaret.png"
+dest_files=[ "res://.import/dropdowncaret.png-fadb5a11d78fd3ce72950f328bd0d8ff.stex" ]
 
 [params]
 
