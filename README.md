@@ -6,7 +6,7 @@
 
 ----
 
-<h1>TCreator - Terraria Mod Maker</h1>
+<h1>TCreator - Terraria Modding Evolved</h1>
 <b>TCreator</b> is a node-based compositor used to generate Terraria mod code for use with <a href="https://github.com/tModLoader/tModLoader">tModLoader</a> using an intuitive easy-to-learn interface or with an integrated code editor. It's powered by the open-source Godot Engine, which you can learn more about <a href="https://godotengine.com">here.</a><br><br>
 I was advised by many not to make this a real thing, let alone publish it, but FUCK IT. And FUCK you.
 
