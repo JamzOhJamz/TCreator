@@ -1,4 +1,4 @@
-<img align="center" src="https://i.imgur.com/ZOuGUJi.png">
+<img align="center" src="https://i.imgur.com/Jn50F2z.png">
 <p align="center">
   <img src="https://forthebadge.com/images/badges/made-with-c-sharp.svg"> <img src="https://forthebadge.com/images/badges/0-percent-optimized.svg"> <img src="https://forthebadge.com/images/badges/fuck-it-ship-it.svg"><br>
   <img src="https://forthebadge.com/images/badges/open-source.svg"> <img src="https://forthebadge.com/images/badges/uses-git.svg"> <img src="https://forthebadge.com/images/badges/powered-by-black-magic.svg">
