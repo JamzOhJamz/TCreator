@@ -11,7 +11,7 @@
 I was advised by many not to make this a real thing, let alone publish it, but FUCK IT. And FUCK you.
 
 <h2>Download, community, and support</h2>
-Download it yourself from here and open it in the <a href="https://downloads.tuxfamily.org/godotengine/3.4.4/mono/Godot_v3.4.4-stable_mono_win64.zip">Mono version of Godot Engine v3.4.4.</a><br><br>
+Download it yourself from this repository and open it in the <a href="https://downloads.tuxfamily.org/godotengine/3.4.4/mono/Godot_v3.4.4-stable_mono_win64.zip">Mono version of Godot Engine v3.4.4.</a><br><br>
 <i>As of right now, there is no support community or forum.</i>
 
 <h2>Development and contributing</h2>
