@@ -1,8 +1,24 @@
 using Godot;
-using System;
+using Newtonsoft.Json;
 
+[JsonObject(MemberSerialization.OptIn)]
 public class CommentNode : BlueprintNode
 {
+	[JsonProperty]
+	public string CommentText
+	{
+		get { return TooltipEdit.Text; }
+		set {
+			TooltipEdit.Text = value;
+		}
+	}
+
+	public override void PostPopulate()
+	{
+		_on_StringInput_text_changed();
+		FinishedLoading = true;
+	}
+
 	Panel TooltipBox;
 	TextEdit TooltipEdit;
 	float TooltipBoxBaseHeight;

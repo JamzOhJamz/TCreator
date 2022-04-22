@@ -161,14 +161,14 @@ anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = 10.0
 margin_top = -17.5
-margin_right = 366.0
+margin_right = 296.0
 margin_bottom = 17.5
 mouse_filter = 0
 custom_fonts/font = SubResource( 11 )
 text = "Display Name"
 valign = 1
 
-[node name="StringInput" type="LineEdit" parent="VBoxContainer/DisplayNameBox"]
+[node name="DisplayNameInput" type="LineEdit" parent="VBoxContainer/DisplayNameBox"]
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -198,7 +198,7 @@ custom_styles/panel = SubResource( 15 )
 
 [node name="PropertyName" type="Label" parent="VBoxContainer/TooltipBox"]
 margin_left = 10.0
-margin_right = 366.0
+margin_right = 292.0
 margin_bottom = 35.0
 mouse_filter = 0
 custom_fonts/font = SubResource( 11 )

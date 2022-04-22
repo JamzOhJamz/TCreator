@@ -1,12 +1,24 @@
 using Godot;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
+[JsonObject(MemberSerialization.OptIn)]
 public class BlueprintNode : Control
 {
+	[JsonProperty]
+	public string Type { get; set; }
+
+	[JsonProperty]
+	public Vector2 WorkspacePosition { get { return RectGlobalPosition; } }
+
+	public static Vector2 OffScreenPosition = -Vector2.One * 99999999f;
+	public Vector2 PostLoadSetPosition;
 	public List<BlueprintNode> Branches = new List<BlueprintNode>();
 	public Vector2? DragPoint = null;
 	public NodeConnectionLine ConnectionLine = null;
-	private TCreator TCreatorInstance;
+	public TCreator TCreatorInstance;
+	public bool FinishedLoading = false;
 	private Line2D TempDrawLine = null;
 
 	public override void _Ready()
@@ -151,4 +163,20 @@ public class BlueprintNode : Control
 			panelStyle.BgColor = new Color("ffffff");
 		}
 	}
+
+	/// <summary>
+	/// Called after TCR file loading populates this node's JSON properties
+	/// </summary>
+	public virtual void PostPopulate() { }
+
+	/// <summary>
+	/// Called when code is being exported for this node's blueprint
+	/// </summary>
+	public virtual void OnExport(ref ClassDeclarationSyntax mainClassDeclaration) { }
+
+	/// <summary>
+	/// Called after final export code is completely generated. Make final formatting changes here.
+	/// </summary>
+	/// <param name="mainClassDeclaration"></param>
+	public virtual void PostExport(ref CompilationUnitSyntax compilationUnit) { }
 }

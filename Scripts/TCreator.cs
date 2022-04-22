@@ -1,19 +1,34 @@
 using Godot;
+using System;
 using System.Collections.Generic;
 using static Godot.Tween;
 
 public class TCreator : Node2D
 {
+	public static TCreator Instance;
 	public static bool InWorkspace = false;
+	public static bool InFileDialog = false;
 	public static bool DraggingComponent = false;
 	public static bool FocusedOnControl = false;
 	public static bool NodeConnectionLineDrawing = false;
 	public static List<Panel> ConnectToInNub = new List<Panel>();
 	public static List<BlueprintNode> WorkspaceNodes = new List<BlueprintNode>();
+	public static Vector2 CameraPosition;
+	public static float CameraZoom = 0.999f;
+
+	private RoslynCompiler CodeCompiler;
 
 	public override void _Ready()
 	{
+		Instance = this;
 		OS.WindowMaximized = true;
+		GetTree().Connect("screen_resized", this, nameof(OnWindowSizeChanged));
+		CodeCompiler = GetTree().Root.GetNode<RoslynCompiler>("RoslynCompiler");
+	}
+
+	private void OnWindowSizeChanged()
+	{
+		GetNode<FileDialog>("CanvasLayer/OpenFileDialog").Hide();
 	}
 
 	public override void _Process(float delta)
@@ -47,8 +62,39 @@ public class TCreator : Node2D
 				focusedLineEdit.Deselect();
 				focusedLineEdit.CaretPosition = 0;
 			}
+			if (focusOwner is TextEdit focusedTextEdit)
+				focusedTextEdit.Deselect();
 			CustomDropdown.DeselectDropdowns();
 			focusOwner.ReleaseFocus();
+		}
+		// Handle shortcuts (eg. Ctrl+S)
+		else if (@event is InputEventKey keyEvent)
+		{
+			if (!keyEvent.IsPressed())
+				return;
+			if (Input.IsKeyPressed((int)KeyList.Shift))
+			{
+				if (keyEvent.Scancode == (uint)KeyList.Enter)
+					OS.WindowFullscreen = !OS.WindowFullscreen;
+			}
+			if (Input.IsKeyPressed((int)KeyList.Control))
+			{
+				if (keyEvent.Scancode == (uint)KeyList.S)
+				{
+					if (InWorkspace && WorkspaceNodes.Count > 0)
+						ShowSaveFileDialog(BlueprintIO.SaveTCRFile);
+				} else if (keyEvent.Scancode == (uint)KeyList.O)
+				{
+					if (InWorkspace)
+						ShowOpenFileDialog(BlueprintIO.OpenTCRFile, new string[] { "*.tcr ; TCreator Blueprint" });
+				} else if (keyEvent.Scancode == (uint)KeyList.E)
+				{
+					if (InWorkspace && WorkspaceNodes.Count > 0)
+					{
+						CodeCompiler.Export();
+					}
+				}
+			}
 		}
 	}
 
@@ -61,6 +107,76 @@ public class TCreator : Node2D
 		BlueprintComponent.CreateNew(typesList, "Texture", new Color("3beca4"));
 		Control otherList = GetNode<Control>("CanvasLayer/Sidebar/VBoxContainer/OtherHeader");
 		BlueprintComponent.CreateNew(otherList, "Comment", new Color("a8a9bf"));
+	}
+
+	private Action<string> OpenFileCallback;
+
+	public void ShowOpenFileDialog(Action<string> callback, string[] filters)
+	{
+		FileDialog fd = GetNode<FileDialog>("CanvasLayer/OpenFileDialog");
+		fd.Filters = filters;
+		fd.RectSize = new Vector2(OS.WindowSize.x, OS.WindowSize.y - 20);
+		fd.PopupCentered();
+		fd.Invalidate();
+		InFileDialog = true;
+		OpenFileCallback = callback;
+	}
+
+	public void HideOpenFileDialog()
+	{
+		FileDialog fd = GetNode<FileDialog>("CanvasLayer/OpenFileDialog");
+		fd.Hide();
+		if (!BlueprintIO.OpeningTCRFile)
+		{
+			InFileDialog = false;
+			return;
+		}
+	}
+
+	private void _on_OpenFileDialog_file_selected(string path)
+	{
+		if (OpenFileCallback != null)
+		{
+			OpenFileCallback.Invoke(path);
+			OpenFileCallback = null;
+		}
+	}
+
+	private void _on_OpenFileDialog_popup_hide()
+	{
+		if (!BlueprintIO.OpeningTCRFile)
+		{
+			InFileDialog = false;
+			return;
+		}
+		FileDialog fd = GetNode<FileDialog>("CanvasLayer/OpenFileDialog");
+		fd.Show();
+	}
+
+	private Action<string> SaveFileCallback;
+
+	public void ShowSaveFileDialog(Action<string> callback)
+	{
+		FileDialog fd = GetNode<FileDialog>("CanvasLayer/SaveFileDialog");
+		fd.RectSize = new Vector2(OS.WindowSize.x, OS.WindowSize.y - 20);
+		fd.PopupCentered();
+		fd.Invalidate();
+		InFileDialog = true;
+		SaveFileCallback = callback;
+	}
+
+	private void _on_SaveFileDialog_file_selected(string path)
+	{
+		if (SaveFileCallback != null)
+		{
+			SaveFileCallback.Invoke(path);
+			SaveFileCallback = null;
+		}
+	}
+
+	private void _on_SaveFileDialog_hide()
+	{
+		InFileDialog = false;
 	}
 
 	private void _on_NewProjectBtn_gui_input(object @event)
@@ -115,6 +231,8 @@ public class TCreator : Node2D
 	public void SetNavbarText(string text)
 	{
 		GetNode<Label>("CanvasLayer/Navbar/TitleText").Text = text + " - TCreator Alpha";
+		Node richPresenceHandler = GetTree().Root.GetNode("RichPresenceHandler");
+		richPresenceHandler.Call("_update_details", text);
 	}
 
 	public void CreateStartNodeInWorkspace()
@@ -139,12 +257,14 @@ public class TCreator : Node2D
 		Tween tween = new Tween();
 		AddChild(tween);
 		tween.InterpolateProperty(workspacePositionDisplay, "modulate",
-			new Color(1, 1, 1, 1), new Color(1, 1, 1, 0), 1,
+			new Color(1, 1, 1, 1), new Color(1, 1, 1, 0), 0.7f,
 			TransitionType.Linear, EaseType.InOut);
 		tween.Start();
 		await ToSignal(tween, "tween_completed");
 		tween.QueueFree();
 	}
+
+	public void SetLastReceivedWorkspacePosition(Vector2 workspacePosition) => lastReceivedWorkspacePos = workspacePosition;
 
 	private float RoundToDec(float num, int digit)
 	{
@@ -154,5 +274,30 @@ public class TCreator : Node2D
 	public Vector2 GetWorkspaceMpos()
 	{
 		return GetGlobalMousePosition();
+	}
+
+	public async static void SetCameraPosition(Vector2 pos, bool lerp)
+	{
+		CameraPosition = pos;
+		if (!lerp)
+		{
+			Instance.GetNode<PanningCamera2D>("Camera2D").Position = pos;
+			return;
+		}
+		Tween tween = new Tween();
+		Instance.AddChild(tween);
+		tween.InterpolateProperty(Instance.GetNode<PanningCamera2D>("Camera2D"), "position",
+			Instance.GetNode<PanningCamera2D>("Camera2D").Position, pos, 0.5f,
+			TransitionType.Expo, EaseType.Out);
+		tween.Start();
+		await Instance.ToSignal(tween, "tween_completed");
+		tween.QueueFree();
+	}
+
+	public static void SetCameraZoom(float zoom)
+	{
+		CameraZoom = zoom;
+		Instance.GetNode<PanningCamera2D>("Camera2D").TargetZoom = zoom;
+		Instance.GetNode<PanningCamera2D>("Camera2D").SetPhysicsProcess(true);
 	}
 }

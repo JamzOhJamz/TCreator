@@ -67,8 +67,10 @@ public class BlueprintComponent : Control
 			{
 				// Release it and create new node on map
 				Camera2D cam = TCreator.GetNode<Camera2D>("Camera2D");
-				Control newComponent = GD.Load<PackedScene>($"res://Blueprints/Item/{Type}Node.tscn").Instance<Control>();
+				BlueprintNode newComponent = GD.Load<PackedScene>($"res://Blueprints/Item/{Type}Node.tscn").Instance<BlueprintNode>();
+				newComponent.Type = Type;
 				newComponent.RectPosition = TCreator.GetWorkspaceMpos();
+				newComponent.FinishedLoading = true;
 				TCreator.GetNode("Workspace").AddChild(newComponent);
 				ShadowNode.QueueFree();
 				ShadowNode = null;

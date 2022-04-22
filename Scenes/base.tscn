@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Scenes/NewBlueprintOption.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Resources/m6x11.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Resources/grid.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/PanningCamera2D.cs" type="Script" id=4]
 [ext_resource path="res://Scripts/TCreator.cs" type="Script" id=5]
+[ext_resource path="res://Resources/x_icon_small.png" type="Texture" id=6]
 
 [sub_resource type="StyleBoxFlat" id=14]
 bg_color = Color( 0.113725, 0.113725, 0.145098, 1 )
@@ -58,8 +59,134 @@ corner_radius_top_right = 5
 [sub_resource type="DynamicFont" id=11]
 font_data = ExtResource( 2 )
 
+[sub_resource type="StyleBoxFlat" id=22]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color( 0.188235, 0.192157, 0.243137, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id=21]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color( 0.266667, 0.270588, 0.345098, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id=23]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_bottom = 3.0
+bg_color = Color( 0.113725, 0.113725, 0.145098, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id=24]
+bg_color = Color( 0.113725, 0.113725, 0.145098, 1 )
+
+[sub_resource type="StyleBoxFlat" id=20]
+bg_color = Color( 0.137255, 0.137255, 0.172549, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_top = 20.0
+
+[sub_resource type="DynamicFont" id=19]
+font_data = ExtResource( 2 )
+
+[sub_resource type="Theme" id=18]
+default_font = SubResource( 19 )
+Button/colors/font_color = Color( 1, 1, 1, 1 )
+Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+Button/colors/font_color_focus = Color( 0.94, 0.94, 0.94, 1 )
+Button/colors/font_color_hover = Color( 0.94, 0.94, 0.94, 1 )
+Button/colors/font_color_pressed = Color( 1, 1, 1, 1 )
+Button/constants/hseparation = 2
+Button/fonts/font = null
+Button/styles/disabled = SubResource( 22 )
+Button/styles/focus = SubResource( 21 )
+Button/styles/hover = SubResource( 21 )
+Button/styles/normal = SubResource( 21 )
+Button/styles/pressed = SubResource( 21 )
+FileDialog/colors/file_icon_modulate = Color( 1, 1, 1, 1 )
+FileDialog/colors/files_disabled = Color( 0, 0, 0, 0.7 )
+FileDialog/colors/folder_icon_modulate = Color( 1, 1, 1, 1 )
+FileDialog/icons/file = null
+FileDialog/icons/folder = null
+FileDialog/icons/parent_folder = null
+FileDialog/icons/reload = null
+FileDialog/icons/toggle_hidden = null
+LineEdit/colors/clear_button_color = Color( 0.88, 0.88, 0.88, 1 )
+LineEdit/colors/clear_button_color_pressed = Color( 1, 1, 1, 1 )
+LineEdit/colors/cursor_color = Color( 0.94, 0.94, 0.94, 1 )
+LineEdit/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
+LineEdit/colors/font_color_selected = Color( 0, 0, 0, 1 )
+LineEdit/colors/font_color_uneditable = Color( 0.88, 0.88, 0.88, 0.5 )
+LineEdit/colors/selection_color = Color( 0.49, 0.49, 0.49, 1 )
+LineEdit/constants/minimum_spaces = 12
+LineEdit/fonts/font = null
+LineEdit/icons/clear = null
+LineEdit/styles/focus = null
+LineEdit/styles/normal = SubResource( 23 )
+LineEdit/styles/read_only = null
+Tree/colors/custom_button_font_highlight = Color( 0.94, 0.94, 0.94, 1 )
+Tree/colors/drop_position_color = Color( 1, 0.3, 0.2, 1 )
+Tree/colors/font_color = Color( 0.69, 0.69, 0.69, 1 )
+Tree/colors/font_color_selected = Color( 1, 1, 1, 1 )
+Tree/colors/guide_color = Color( 0, 0, 0, 0.1 )
+Tree/colors/relationship_line_color = Color( 0.27, 0.27, 0.27, 1 )
+Tree/colors/title_button_color = Color( 0.88, 0.88, 0.88, 1 )
+Tree/constants/button_margin = 4
+Tree/constants/draw_guides = 1
+Tree/constants/draw_relationship_lines = 0
+Tree/constants/hseparation = 4
+Tree/constants/item_margin = 12
+Tree/constants/scroll_border = 4
+Tree/constants/scroll_speed = 12
+Tree/constants/vseparation = 4
+Tree/fonts/font = null
+Tree/fonts/title_button_font = null
+Tree/icons/arrow = null
+Tree/icons/arrow_collapsed = null
+Tree/icons/checked = null
+Tree/icons/select_arrow = null
+Tree/icons/unchecked = null
+Tree/icons/updown = null
+Tree/styles/bg = SubResource( 24 )
+Tree/styles/bg_focus = null
+Tree/styles/button_pressed = null
+Tree/styles/cursor = null
+Tree/styles/cursor_unfocused = null
+Tree/styles/custom_button = null
+Tree/styles/custom_button_hover = null
+Tree/styles/custom_button_pressed = null
+Tree/styles/selected = null
+Tree/styles/selected_focus = null
+Tree/styles/title_button_hover = null
+Tree/styles/title_button_normal = null
+Tree/styles/title_button_pressed = null
+WindowDialog/colors/title_color = Color( 1, 1, 1, 1 )
+WindowDialog/constants/close_h_ofs = 18
+WindowDialog/constants/close_v_ofs = 12
+WindowDialog/constants/scaleborder_size = 4
+WindowDialog/constants/title_height = 20
+WindowDialog/fonts/title_font = null
+WindowDialog/icons/close = ExtResource( 6 )
+WindowDialog/icons/close_highlight = ExtResource( 6 )
+WindowDialog/styles/panel = SubResource( 20 )
+
 [node name="tModCreator" type="Node2D"]
 script = ExtResource( 5 )
+__meta__ = {
+"_edit_vertical_guides_": [  ]
+}
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -273,6 +400,40 @@ margin_right = 325.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 11 )
 
+[node name="OpenFileDialog" type="FileDialog" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -280.0
+margin_right = 512.0
+margin_bottom = 295.0
+theme = SubResource( 18 )
+popup_exclusive = true
+window_title = "Open a File"
+mode = 0
+access = 2
+filters = PoolStringArray( "*.png ; PNG Images" )
+current_dir = "/Users/jamzo/Documents/TCreator"
+current_path = "/Users/jamzo/Documents/TCreator/"
+
+[node name="SaveFileDialog" type="FileDialog" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -280.0
+margin_right = 512.0
+margin_bottom = 295.0
+theme = SubResource( 18 )
+popup_exclusive = true
+access = 2
+filters = PoolStringArray( "*.tcr ; TCreator Blueprint" )
+current_dir = "/Users/jamzo/Documents/TCreator"
+current_path = "/Users/jamzo/Documents/TCreator/"
+
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 zoom = Vector2( 0.999, 0.999 )
@@ -306,3 +467,7 @@ __meta__ = {
 [connection signal="gui_input" from="CanvasLayer/Control/VBoxContainer/NewBlueprintBtn" to="." method="_on_NewBlueprintBtn_gui_input"]
 [connection signal="mouse_entered" from="CanvasLayer/Control/VBoxContainer/NewBlueprintBtn" to="." method="_on_NewBlueprintBtn_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/Control/VBoxContainer/NewBlueprintBtn" to="." method="_on_NewBlueprintBtn_mouse_exited"]
+[connection signal="file_selected" from="CanvasLayer/OpenFileDialog" to="." method="_on_OpenFileDialog_file_selected"]
+[connection signal="popup_hide" from="CanvasLayer/OpenFileDialog" to="." method="_on_OpenFileDialog_popup_hide"]
+[connection signal="file_selected" from="CanvasLayer/SaveFileDialog" to="." method="_on_SaveFileDialog_file_selected"]
+[connection signal="hide" from="CanvasLayer/SaveFileDialog" to="." method="_on_SaveFileDialog_hide"]

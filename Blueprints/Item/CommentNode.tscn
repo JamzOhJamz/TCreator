@@ -122,7 +122,8 @@ margin_right = 219.0
 margin_bottom = 27.0
 theme = SubResource( 24 )
 custom_colors/selection_color = Color( 0.266667, 0.270588, 0.345098, 1 )
-custom_colors/font_color_selected = Color( 0.454902, 0.458824, 0.541176, 1 )
+custom_colors/caret_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_selected = Color( 0.658824, 0.662745, 0.74902, 1 )
 custom_colors/font_color = Color( 0.266667, 0.270588, 0.345098, 1 )
 custom_colors/line_number_color = Color( 0.454902, 0.458824, 0.541176, 1 )
 custom_fonts/font = SubResource( 25 )
@@ -134,6 +135,7 @@ override_selected_font_color = true
 context_menu_enabled = false
 wrap_enabled = true
 caret_blink = true
+caret_moving_by_right_click = false
 
 [connection signal="gui_input" from="VBoxContainer/HeaderBar" to="." method="_on_HeaderBar_gui_input"]
 [connection signal="pressed" from="VBoxContainer/HeaderBar/DeleteButton" to="." method="_on_DeleteButton_pressed"]

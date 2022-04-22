@@ -132,6 +132,7 @@ config/icon="res://icon.png"
 Discord="*res://addons/discord_game_sdk/discord.gd"
 RichPresenceHandler="*res://Scripts/rich_presence_handler.gd"
 NativeHelper="*res://Scripts/NativeHelper.cs"
+RoslynCompiler="*res://Scripts/CodeAnalysis/RoslynCompiler.cs"
 
 [editor_plugins]
 

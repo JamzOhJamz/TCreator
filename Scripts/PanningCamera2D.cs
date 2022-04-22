@@ -7,7 +7,7 @@ public class PanningCamera2D : Camera2D
 	public float ZOOM_RATE = 8f;
 	public float ZOOM_INCREMENT = 0.1f;
 
-	private float TargetZoom = 0.999f;
+	public float TargetZoom = 0.999f;
 
 	private TCreator TCreator;
 
@@ -20,12 +20,13 @@ public class PanningCamera2D : Camera2D
 	{
 		float lerp = Mathf.Lerp(Zoom.x, TargetZoom, ZOOM_RATE * delta);
 		Zoom = new Vector2(lerp, lerp);
+		TCreator.CameraZoom = Zoom.x;
 		SetPhysicsProcess(!(Zoom.x == TargetZoom));
 	}
 
 	public override void _Input(InputEvent @event)
 	{
-		if (!TCreator.InWorkspace)
+		if (!TCreator.InWorkspace || TCreator.InFileDialog)
 			return;
 		if (@event is InputEventMouseButton mouseEvent)
 		{
@@ -44,6 +45,7 @@ public class PanningCamera2D : Camera2D
 			{
 				Position -= motionEvent.Relative * Zoom;
 				TCreator.ShowWorkspacePosition(Position);
+				TCreator.CameraPosition = Position;
 			}
 		}
 	}
